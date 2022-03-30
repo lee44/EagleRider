@@ -14,8 +14,9 @@ from Utilities.util import Util
 
 util = Util()
 
-# In excel, ensure the following columns: Email, Amount, Expired, Res#
-# Convert all dates to short date, make sure there exists an Expired column, and no empty cells
+print('\n*In excel, ensure the following columns: Email, Amount, Expired, Res')
+print('*Convert all dates to short date, make sure there exists an Expired column, and no empty cells')
+print('*Make sure expired dates are less than a year old. Script only adds 1 year so the new date could be less than today')
 print("File Name(exclude .csv): ")
 file = input()
 
@@ -34,7 +35,7 @@ with sync_playwright() as p:
 
     util.login(page)
 
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(1000)
     for i in df.index:
         email = df['Email'][i]
         amount = df['Amount'][i]
