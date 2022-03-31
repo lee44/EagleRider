@@ -2,7 +2,7 @@ import sys
 from os.path import abspath, dirname
 
 from playwright.sync_api import sync_playwright
-
+import random
 from util import Util
 
 util = Util()
@@ -21,9 +21,9 @@ with sync_playwright() as p:
     page.wait_for_timeout(1000)
     page.fill("id=login-form_password", util.get_password())
     page.locator("text=Sign In").click()
-    page.wait_for_timeout(30000)
-
+    # Random wait time 0 - 15 minutes
+    wait = float(random.randint(0, 10)*1000*60)
+    page.wait_for_timeout(wait)
     page.locator('[aria-label="Clock Out"],[aria-label="Clock In"]').click()
-    # page.locator("text=Clock Out").click()
-    page.wait_for_timeout(30000)
+    page.wait_for_timeout(5000)
     browser.close()
