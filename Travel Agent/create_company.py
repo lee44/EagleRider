@@ -1,4 +1,5 @@
 import sys
+from cProfile import label
 from os.path import abspath, dirname
 
 from playwright.sync_api import sync_playwright
@@ -13,6 +14,10 @@ print("Company Name: ")
 company_name = input()
 print("Company Code(6 Digits): ")
 company_code = input()
+print("Company Type:")
+company_type = input()
+print("Interface Type:")
+interface_type = input()
 print("Billing Email: ")
 email = input()
 print("Phone: ")
@@ -35,8 +40,8 @@ with sync_playwright() as p:
 
     page.fill("input[name=\"company[name]\"]", company_name)
     page.fill("input[name=\"company[code]\"]", company_code)
-    page.locator("select[name=\"company[company_type_id]\"]").select_option("11")
-    page.locator("select[name=\"company[interface_type_id]\"]").select_option("4")
+    page.locator("select[name=\"company[company_type_id]\"]").select_option(label=company_type)
+    page.locator("select[name=\"company[interface_type_id]\"]").select_option(label=interface_type)
     page.locator("select[name=\"company[sales_channel_id]\"]").select_option("1")
     page.locator("select[name=\"company[invoice_delivery_method_id]\"]").select_option("1")
     page.fill("input[name=\"company[billing_email]\"]", email)
