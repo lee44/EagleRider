@@ -50,14 +50,13 @@ for index, value in enumerate(strip_list):
         claim_codes.append(value)
         continue
     if(re.fullmatch(amounts_regex, value)):
-        amounts.append(value)
+        amounts.append(value[1:].replace(',', ''))
         continue
     if(re.fullmatch(expires_regex, value)):
-        if(re.fullmatch(amounts_regex, strip_list[index-1])):
+        if(re.fullmatch(amounts_regex, strip_list[index - 1])):
             expires.append(value)
         continue
     if(re.fullmatch(extensions_regex, value)):
-
         extensions.append(value)
         continue
 
@@ -71,9 +70,9 @@ store_credits.append(extensions)
 # print(store_credits)
 
 df = pd.DataFrame(store_credits).transpose()
-df.columns = ['Res#', 'Email', 'Claim Code', 'Amount', 'Expired', 'Extension']
+df.columns = ['Res #', 'Email', 'Claim Code', 'Amount', 'Expired', 'Extension']
 df['Extension'].fillna(value='1 year', inplace=True)
 print(df)
 
-store_credit_path = os.path.abspath(os.path.join('C:', 'Users', 'Lee', 'Downloads', 'store_credits.csv'))
+store_credit_path = os.path.abspath(os.path.join('C:', 'Users', 'Lee', 'Downloads', 'store_credits2.csv'))
 df.to_csv(store_credit_path, index=False, header=True)

@@ -44,8 +44,8 @@ with sync_playwright() as p:
 
         page.click("xpath=//html/body/div[1]/div[2]/div[1]/h2")
 
-        print("10 seconds to check")
-        page.wait_for_timeout(10000)
+        print("5 seconds to check")
+        page.wait_for_timeout(5000)
         page.click("input[name=\"commit\"]")
         page.wait_for_timeout(1000)
 
