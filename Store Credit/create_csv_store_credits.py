@@ -72,7 +72,8 @@ store_credits.append(extensions)
 df = pd.DataFrame(store_credits).transpose()
 df.columns = ['Res #', 'Email', 'Claim Code', 'Amount', 'Expired', 'Extension']
 df['Extension'].fillna(value='1 year', inplace=True)
-print(df)
+# print(df)
+print(strip_list)
 
 store_credit_path = os.path.abspath(os.path.join('C:', 'Users', 'Lee', 'Downloads', 'store_credits2.csv'))
 df.to_csv(store_credit_path, index=False, header=True)

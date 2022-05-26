@@ -1,31 +1,9 @@
-import sys
 from datetime import datetime
-from os.path import abspath, dirname
 
-from dateutil.relativedelta import relativedelta
-from playwright.sync_api import sync_playwright
 
-d = dirname(dirname(abspath(__file__)))
-sys.path.append(d)
-from Utilities.util import Util
-
-util = Util()
-print("Enter the biggest Company Product ID for that company: ")
-company_product_id = input()
-
-company_product_id = int(company_product_id)
-
-with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False)
-    context = browser.new_context(
-        viewport={
-            "width": 1875, "height": 975}
-    )
-    page = context.new_page()
-
-    page.goto("https://www.eaglerider.com/activeadmin")
-
-    util.login(page)
+def create_product_credit_terms(page):
+    print("Enter the biggest Company Product ID for that company: ")
+    company_product_id = int(input())
 
     for i in range(3):
         page.goto("https://www.eaglerider.com/activeadmin/company_product_credit_terms/new")
@@ -44,5 +22,3 @@ with sync_playwright() as p:
         page.click("input[name=\"commit\"]")
         page.wait_for_timeout(1000)
         company_product_id -= 1
-
-    browser.close()

@@ -1,31 +1,8 @@
-import sys
 from datetime import datetime
-from os.path import abspath, dirname
 
-from playwright.sync_api import sync_playwright
 
-d = dirname(dirname(abspath(__file__)))
-sys.path.append(d)
-from Utilities.util import Util
-
-util = Util()
-
-products = ['Bike', 'Guided Tour', 'Self Drive Tour']
-
-print("Company Name: ")
-company_name = input()
-
-with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False)
-    context = browser.new_context(
-        viewport={
-            "width": 1875, "height": 975}
-    )
-    page = context.new_page()
-
-    page.goto("https://www.eaglerider.com/activeadmin")
-
-    util.login(page)
+def create_company_products(page, company_name):
+    products = ['Bike', 'Guided Tour', 'Self Drive Tour']
 
     for product in products:
         page.goto("https://www.eaglerider.com/activeadmin/company_products/new")
@@ -48,5 +25,3 @@ with sync_playwright() as p:
         page.wait_for_timeout(5000)
         page.click("input[name=\"commit\"]")
         page.wait_for_timeout(1000)
-
-    browser.close()
