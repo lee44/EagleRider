@@ -7,7 +7,7 @@ import pandas as pd
 # print("File Name(include .txt): ")
 # file = input()
 
-abs_path = os.path.abspath(os.path.join('C:', 'Users', 'Lee', 'Downloads', 'store_credits_v2.txt'))
+abs_path = os.path.abspath(os.path.join('C:', 'Users', 'Lee', 'Downloads', 'store_credits_raw.txt'))
 
 strip_list = [line.rstrip('\n|') for line in open(abs_path)]
 strip_list = list(filter(None, strip_list))
@@ -72,8 +72,7 @@ store_credits.append(extensions)
 df = pd.DataFrame(store_credits).transpose()
 df.columns = ['Res #', 'Email', 'Claim Code', 'Amount', 'Expired', 'Extension']
 df['Extension'].fillna(value='1 year', inplace=True)
-# print(df)
-print(strip_list)
+print(df)
 
-store_credit_path = os.path.abspath(os.path.join('C:', 'Users', 'Lee', 'Downloads', 'store_credits2.csv'))
+store_credit_path = os.path.abspath(os.path.join('C:', 'Users', 'Lee', 'Downloads', 'store_credits_extracted.csv'))
 df.to_csv(store_credit_path, index=False, header=True)

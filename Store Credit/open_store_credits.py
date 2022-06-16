@@ -4,7 +4,7 @@ import webbrowser
 
 import pandas as pd
 
-file = 'store_credits'
+file = 'store_credits_extracted'
 
 abs_path = os.path.abspath(os.path.join('C:', 'Users', 'Lee', 'Downloads', file + '.csv'))
 df = pd.read_csv(abs_path, encoding="ISO-8859-1", parse_dates=["Expired"])
