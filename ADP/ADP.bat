@@ -1,1 +1,0 @@
-C:\Users\jlee7\Desktop\EagleRider\env\Scripts\activate.bat && python C:\Users\jlee7\Desktop\EagleRider\ADP\sign_in.py
