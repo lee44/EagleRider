@@ -36,7 +36,7 @@ with sync_playwright() as p:
         print(location, vehicle_class)
 
         page.goto('https://www.eaglerider.com/activeadmin/charges/new')
-        page.locator("select[name=\"charge[charge_description_id]\"]").select_option(value="9")
+        page.locator("select[name=\"charge[charge_description_id]\"]").select_option(value="128")
 
         page.fill("input[name=\"charge[end_date]\"]", "2050-12-31")
         page.fill("input[name=\"charge[start_date]\"]", "2023-01-01")
