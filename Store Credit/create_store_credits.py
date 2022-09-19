@@ -23,7 +23,7 @@ abs_path = os.path.abspath(os.path.join('C:', 'Users', 'Lee', 'Downloads', file 
 df = pd.read_csv(abs_path, encoding="ISO-8859-1", parse_dates=["Expired"])
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False)
+    browser = p.chromium.launch(headless=False, args=["--window-position=0,0"])
     context = browser.new_context(
         viewport={
             "width": 2500, "height": 1300}

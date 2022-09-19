@@ -23,7 +23,7 @@ charge_modifier_id = [
     60047, 60051, 60040, 60044, 60048, 60052, 60784, 60785, 60786, 60787]
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False)
+    browser = p.chromium.launch(headless=False, args=["--window-position=0,0"])
     context = browser.new_context(
         viewport={
             "width": 2500, "height": 1300}

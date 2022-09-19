@@ -22,16 +22,6 @@ location_id = input()
 abs_path = os.path.abspath(os.path.join('C:', 'Users', 'Lee', 'Downloads', file + '.csv'))
 df = pd.read_csv(abs_path, encoding='utf-8')
 
-# for i in df.index:
-#     location_vehicle_model_id = df['Id'][i]
-#     start_date = pd.to_datetime(df['Start date'][i])
-#     end_date = pd.to_datetime(df['End date'][i])
-
-#     print(location_vehicle_model_id)
-
-#     print(start_date)
-#     print(end_date)
-
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=False, args=["--window-position=0,0"])
     context = browser.new_context(

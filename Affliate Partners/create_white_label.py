@@ -26,10 +26,10 @@ print("Phone: ")
 phone = input()
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False)
+    browser = p.chromium.launch(headless=False, args=["--window-position=0,0"])
     context = browser.new_context(
         viewport={
-            "width": 1875, "height": 975}
+            "width": 2500, "height": 1300}
     )
     page = context.new_page()
 
