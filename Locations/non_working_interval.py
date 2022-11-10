@@ -15,10 +15,10 @@ util = Util()
 def create_non_working_intervals(location):
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False, args=["--window-position=0,0"])
+        browser = p.chromium.launch(headless=False, args=["--window-position=-5,0"])
     context = browser.new_context(
         viewport={
-            "width": 2500, "height": 1300}
+            "width": 2550, "height": 1300}
     )
     page = context.new_page()
 

@@ -22,10 +22,10 @@ charge_id = [
     19156, 19157, 19158, 19159, 19160, 19161, 19162, 19163, 21186, 21187, 21188, 21189, 21190, 21191, 21352, 21353, ]
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False, args=["--window-position=0,0"])
+    browser = p.chromium.launch(headless=False, args=["--window-position=-5,0"])
     context = browser.new_context(
         viewport={
-            "width": 2500, "height": 1300}
+            "width": 2550, "height": 1300}
     )
     page = context.new_page()
 

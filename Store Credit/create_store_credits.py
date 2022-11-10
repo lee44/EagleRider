@@ -17,16 +17,16 @@ util = Util()
 print('\n*In excel, ensure the following columns: Email, Amount, Expired, Res')
 print('*Convert all dates to short date, make sure there exists an Expired column, and no empty cells')
 print("File Name(exclude .csv): ")
-file = input()
+file = input() or 'store_credits_extracted'
 
 abs_path = os.path.abspath(os.path.join('C:', 'Users', 'Lee', 'Downloads', file + '.csv'))
 df = pd.read_csv(abs_path, encoding="ISO-8859-1", parse_dates=["Expired"])
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False, args=["--window-position=0,0"])
+    browser = p.chromium.launch(headless=False, args=["--window-position=-5,0"])
     context = browser.new_context(
         viewport={
-            "width": 2500, "height": 1300}
+            "width": 2550, "height": 1300}
     )
     page = context.new_page()
 

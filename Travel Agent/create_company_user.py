@@ -16,10 +16,10 @@ print("Enter user id: ")
 user_id = input()
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False, args=["--window-position=0,0"])
+    browser = p.chromium.launch(headless=False, args=["--window-position=-5,0"])
     context = browser.new_context(
         viewport={
-            "width": 2500, "height": 1300}
+            "width": 2550, "height": 1300}
     )
     page = context.new_page()
 
@@ -45,7 +45,6 @@ with sync_playwright() as p:
     page.locator("select[name=\"user[admin_extended_profile_attributes][default_location_id]\"]").select_option(value="1")
     page.locator("select[name=\"user[admin_extended_profile_attributes][process_payment_location_id]\"]").select_option(value="1")
     page.locator("select[name=\"user[admin_extended_profile_attributes][payment_gateway_id]\"]").select_option(value="158")
-
     print("5 seconds to check")
     page.wait_for_timeout(2500)
     page.click("input[name=\"commit\"]")

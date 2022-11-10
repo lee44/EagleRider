@@ -14,8 +14,11 @@ from Utilities.util import Util
 
 util = Util()
 
-print("File Name(exclude .csv): ")
-file = input() or 'location-vehicle-models-2022-09-12'
+# Go to Location Vehicle Models and look up the location
+# Highlight all the rows and copy and paste to an excel file
+# Remove the vehicle models that dont need a sold out but if Sold Out Start and End Date are not within Start Date and End Date of Location Vehicle Models, remove the row
+
+file = 'location-vehicle-models'
 print("Enter Location ID")
 location_id = input()
 
@@ -23,10 +26,10 @@ abs_path = os.path.abspath(os.path.join('C:', 'Users', 'Lee', 'Downloads', file 
 df = pd.read_csv(abs_path, encoding='utf-8')
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False, args=["--window-position=0,0"])
+    browser = p.chromium.launch(headless=False, args=["--window-position=-5,0"])
     context = browser.new_context(
         viewport={
-            "width": 2500, "height": 1300}
+            "width": 2550, "height": 1300}
     )
     page = context.new_page()
 
@@ -36,8 +39,8 @@ with sync_playwright() as p:
 
     for i in df.index:
         location_vehicle_model_id = df['Id'][i]
-        start_date = pd.to_datetime(df['Start date'][i]).strftime('%Y-%m-%d')
-        end_date = pd.to_datetime(df['End date'][i]).strftime('%Y-%m-%d')
+        start_date = pd.to_datetime(df['Start Date'][i]).strftime('%Y-%m-%d')
+        end_date = pd.to_datetime(df['End Date'][i]).strftime('%Y-%m-%d')
 
         print(location_vehicle_model_id)
 
@@ -54,6 +57,7 @@ with sync_playwright() as p:
 
         page.wait_for_timeout(1000)
         page.click("input[name=\"commit\"]")
+        page.wait_for_timeout(5000)
         page.goto(f'https://www.eaglerider.com/activeadmin/soldouts/new?location_id={location_id}')
 
     browser.close()

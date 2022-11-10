@@ -12,7 +12,7 @@ from Utilities.util import Util
 util = Util()
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False, args=["--window-position=0,0"])
+    browser = p.chromium.launch(headless=False, args=["--window-position=-5,0"])
     context = browser.new_context(
         viewport={
             "width": 2525, "height": 1325}

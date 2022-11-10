@@ -18,10 +18,10 @@ location_id = [
     165, 167, 166, 168, 169, 170, 171, 172, 173, 174, 175, 179, 177, 178, 180, 181, 184, 185, 186, 188, 189, 192, 193, 197, 199, 200, 201, 204, 205, 206, 212, 226, 227, 229, 232]
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False, args=["--window-position=0,0"])
+    browser = p.chromium.launch(headless=False, args=["--window-position=-5,0"])
     context = browser.new_context(
         viewport={
-            "width": 2500, "height": 1300}
+            "width": 2550, "height": 1300}
     )
     page = context.new_page()
 
